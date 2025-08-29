@@ -295,31 +295,28 @@ public:
     }
 
 private:
-    size_t partition(size_t low, size_t high) {
-        T pivot = Get(high);
-        size_t i = low;
-
-        for (size_t j = low; j < high; j++) {
-            if (Get(j) <= pivot) {
-                T temp = Get(i);
-                Set(i, Get(j));
-                Set(j, temp);
-                i++;
-            }
-        }
-        T temp = Get(i);
-        Set(i, Get(high));
-        Set(high, temp);
-        return i;
-    }
 
     void QuickSort(size_t low, size_t high) {
         if (low < high) {
-            size_t pi = partition(low, high);
-            if (pi > 0) {
-                QuickSort(low, pi - 1);
+            T pivot = Get(high);
+            size_t i = low;
+
+            for (size_t j = low; j < high; j++) {
+                if (Get(j) <= pivot) {
+                    T temp = Get(i);
+                    Set(i, Get(j));
+                    Set(j, temp);
+                    i++;
+                }
             }
-            QuickSort(pi + 1, high);
+            T temp = Get(i);
+            Set(i, Get(high));
+            Set(high, temp);
+
+            if (i > 0) {
+                QuickSort(low, i - 1);
+            }
+            QuickSort(i + 1, high);
         }
     }
 };

@@ -355,7 +355,7 @@ private:
 
     Node* Split(Node* start) {
         Node* slow = start;
-        Node* fast = start->next;
+        Node* fast = start;
         
         while (fast && fast->next) {
             slow = slow->next;
@@ -378,7 +378,8 @@ private:
                 current->next = left.head;
                 left.head->prev = current;
                 left.head = left.head->next;
-            } else {
+            }
+            else {
                 current->next = right.head;
                 right.head->prev = current;
                 right.head = right.head->next;
@@ -391,7 +392,8 @@ private:
             left.head->prev = current;
             left.tail->next = nullptr;
             return {dummy.next, left.tail};
-        } else {
+        }
+        else {
             current->next = right.head;
             right.head->prev = current;
             right.tail->next = nullptr;
